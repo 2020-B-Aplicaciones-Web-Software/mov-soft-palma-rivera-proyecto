@@ -6,13 +6,28 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
+    <RatingBar
+        android:id="@+id/rBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:layout_marginStart="108dp"
+        android:background="@color/design_default_color_on_primary"
+        android:numStars="5"
+        android:stepSize="1"
+        android:theme="@style/Widget.AppCompat.RatingBar"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.232" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="68dp"
+        android:text="Submit Rating"
+        app:layout_constraintEnd_toEndOf="@+id/rBar"
+        app:layout_constraintStart_toStartOf="@+id/rBar"
+        app:layout_constraintTop_toBottomOf="@+id/rBar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
