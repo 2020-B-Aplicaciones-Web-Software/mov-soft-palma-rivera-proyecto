@@ -15,6 +15,11 @@ class MainActivity : AppCompatActivity() {
             .setOnClickListener {
                 startActivity(Intent(this,RegistroClinica::class.java))
             }
+        val btn7=findViewById<Button>(R.id.button7)
+        btn7
+            .setOnClickListener {
+                startActivity(Intent(this,ResumenClinicas::class.java))
+            }
 
     }
 

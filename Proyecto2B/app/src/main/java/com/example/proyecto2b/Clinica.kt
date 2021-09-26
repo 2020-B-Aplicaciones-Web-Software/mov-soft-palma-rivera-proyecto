@@ -1,12 +1,17 @@
 package com.example.proyecto2b
 
 class Clinica(
-    val nombre_clinica: String,
-    val foto_logo:String,
-    val direccion_clinica: String,
-    val telefono_clinica:String,
-    val web_clinica:String,
-    val costo_consulta:Float,
-    val novedades:String
+    var nombre_clinica: String,
+    var foto_logo:String,
+    var direccion_clinica: String,
+    var telefono_clinica:String,
+    var web_clinica:String,
+    var costo_consulta: Double,
+    var novedades:String,
+    var num_resenas:Int,
+    var calificacion:Double
 ) {
+    override fun toString(): String {
+        return "Clinica(nombre_clinica='$nombre_clinica', foto_logo='$foto_logo', direccion_clinica='$direccion_clinica', telefono_clinica='$telefono_clinica', web_clinica='$web_clinica', costo_consulta=$costo_consulta, novedades='$novedades', num_resenas=$num_resenas, calificacion=$calificacion)"
+    }
 }

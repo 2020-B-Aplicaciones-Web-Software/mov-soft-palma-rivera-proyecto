@@ -7,6 +7,9 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 
 class ResumenClinicaAdapter(
     private val context:Class<*>,
@@ -36,13 +39,17 @@ class ResumenClinicaAdapter(
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+        val storage=Firebase.storage
+        val sr=storage.reference
+
         val clinicaResumen=listaClinicas[position]
-        holder.nombreClinica
-        holder.direccionClinica
-        holder.telefonoClinica
-        holder.horarioClinica
-        holder.calificacionClinica
-        holder.numResenas
+        val path=sr.child(clinicaResumen.foto_logo)
+        holder.nombreClinica.text=clinicaResumen.nombre_clinica
+        holder.direccionClinica.text=clinicaResumen.direccion_clinica
+        holder.telefonoClinica.text=clinicaResumen.telefono_clinica
+        holder.horarioClinica.text="10:00"
+        holder.calificacionClinica.setImageResource(R.drawable.ic_baseline_message_24)
+        holder.numResenas.text=clinicaResumen.num_resenas.toString()
 
     }
 

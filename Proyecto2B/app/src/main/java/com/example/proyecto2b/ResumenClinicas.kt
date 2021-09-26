@@ -1,8 +1,11 @@
 package com.example.proyecto2b
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 class ResumenClinicas : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -10,12 +13,50 @@ class ResumenClinicas : AppCompatActivity() {
         setContentView(R.layout.activity_resumen_clinicas)
         val rvClinica = findViewById<RecyclerView>(R.id.rv_lista_clinicas)
         val lista = ArrayList<Clinica>()
-        iniciarRecyclerView(
-            lista,
-            this,
-            rvClinica
+        val db = Firebase.firestore
+        val ref = db.collection("clinica")
+        ref.get()
+            .addOnSuccessListener { documents ->
+                for (document in documents) {
+                    val nombre_clinica = document.get("nombre").toString()
+                    val telefono_clinia = document.get("telefono").toString()
+                    val calificacion = document.get("calificacion").toString().toDouble()
+                    val costo_consulta = document.get("costo_consulta").toString().toDouble()
+                    val direccion = document.get("direccion").toString()
+                    val foto_logo = document.get("foto_logo").toString()
+                    val novedades = document.get("novedades").toString()
+                    val num_resenas = document.get("num_resenas").toString().toInt()
+                    val web = document.get("web").toString()
+                    lista.add(
+                        Clinica(
+                            nombre_clinica,
+                            foto_logo,
+                            direccion,
+                            telefono_clinia,
+                            web,
+                            costo_consulta,
+                            novedades,
+                            num_resenas,
+                            calificacion
+                        )
+                    )
+                    Log.d("Storage", lista[0].toString())
+                }
+                iniciarRecyclerView(
+                    lista,
+                    this,
+                    rvClinica
+                )
+            }
+            }
+/*
+        lista.add(
+            Clinica("La casa del perro","/","Cerquita","0999999","www.facebook.com",10.00,"Nada",10)
         )
-    }
+
+ */
+
+
 
     private fun iniciarRecyclerView(
         list: List<Clinica>,

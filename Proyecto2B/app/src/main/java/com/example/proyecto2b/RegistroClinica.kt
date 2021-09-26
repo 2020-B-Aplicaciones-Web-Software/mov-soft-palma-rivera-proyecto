@@ -61,7 +61,6 @@ class RegistroClinica : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == 0 && resultCode == Activity.RESULT_OK && data != null) {
             uri = data.data.toString()
-            Log.d("Storage", "Uri: ${uri}")
             val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, data.data)
             val drawable = BitmapDrawable(bitmap)
             findViewById<ImageView>(R.id.imageView).setImageDrawable(drawable)
