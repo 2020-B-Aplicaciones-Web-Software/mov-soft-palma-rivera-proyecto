@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "905923468589",
+    "project_id": "palma-rivera-proyecto-moviles",
+    "storage_bucket": "palma-rivera-proyecto-moviles.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:905923468589:android:758f325c9eb15a4c7fc7a4",
+        "android_client_info": {
+          "package_name": "com.example.proyecto2b"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "905923468589-leiketutrqgqoic4qggtrankbfnn0a6o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD0VOUB6vF8iggM6FeQ4FGl65dTro72mWk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "905923468589-leiketutrqgqoic4qggtrankbfnn0a6o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
