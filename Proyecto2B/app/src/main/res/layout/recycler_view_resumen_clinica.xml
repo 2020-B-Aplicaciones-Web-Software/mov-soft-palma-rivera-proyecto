@@ -13,9 +13,9 @@
         android:text='Clínica Veterinaria "La Casa de las Mascotas"'
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView2"
-        app:layout_constraintStart_toEndOf="@+id/imageView2"
-        app:layout_constraintTop_toTopOf="@+id/imageView2"
+        app:layout_constraintBottom_toBottomOf="@+id/foto_clinica_resumen"
+        app:layout_constraintStart_toEndOf="@+id/foto_clinica_resumen"
+        app:layout_constraintTop_toTopOf="@+id/foto_clinica_resumen"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
@@ -85,9 +85,9 @@
         android:layout_width="104dp"
         android:layout_height="18dp"
         android:layout_marginTop="7dp"
-        app:layout_constraintEnd_toEndOf="@+id/imageView2"
-        app:layout_constraintStart_toStartOf="@+id/imageView2"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        app:layout_constraintEnd_toEndOf="@+id/foto_clinica_resumen"
+        app:layout_constraintStart_toStartOf="@+id/foto_clinica_resumen"
+        app:layout_constraintTop_toBottomOf="@+id/foto_clinica_resumen"
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
@@ -111,7 +111,7 @@
         app:srcCompat="@android:drawable/stat_sys_phone_call" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/foto_clinica_resumen"
         android:layout_width="106dp"
         android:layout_height="102dp"
         android:layout_marginTop="16dp"

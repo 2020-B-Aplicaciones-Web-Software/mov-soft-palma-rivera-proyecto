@@ -1,5 +1,9 @@
 package com.example.proyecto2b
 
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.graphics.drawable.BitmapDrawable
+import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
+import java.io.File
 
 class ResumenClinicaAdapter(
     private val context:Class<*>,
@@ -24,6 +29,7 @@ class ResumenClinicaAdapter(
         val calificacionClinica=view.findViewById<ImageView>(R.id.rating_resumen)
         val numResenas=view.findViewById<TextView>(R.id.num_resena_resumen)
         val btnMasInfo=view.findViewById<Button>(R.id.btn_mas_info_clinica)
+        val foto=view.findViewById<ImageView>(R.id.foto_clinica_resumen)
         init {
         }
     }
@@ -44,6 +50,12 @@ class ResumenClinicaAdapter(
 
         val clinicaResumen=listaClinicas[position]
         val path=sr.child(clinicaResumen.foto_logo)
+        val file= File.createTempFile("profile","jpg")
+        path.getFile(file)
+            .addOnSuccessListener {
+                val bitmap=Drawable.createFromPath(file.toString())
+                holder.foto.setImageDrawable(bitmap)
+            }
         holder.nombreClinica.text=clinicaResumen.nombre_clinica
         holder.direccionClinica.text=clinicaResumen.direccion_clinica
         holder.telefonoClinica.text=clinicaResumen.telefono_clinica
