@@ -1,37 +1,66 @@
 package com.example.proyecto2b
 
-import android.animation.ObjectAnimator
+import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.widget.ProgressBar
-import android.widget.TextClock
+import android.widget.ArrayAdapter
+import android.widget.Button
+import android.widget.ListView
 import android.widget.TextView
-import java.util.*
 
 class DetalleClinica : AppCompatActivity() {
+    var arregloResenias1 = ArrayList<Resenia>()
+    var id_seleccionado = -1
+    val CODIGO_RESPUESTA_INTENT_EXPLICITO = 401
+
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
-        val clinica = intent.getParcelableExtra<Clinica>("Clinica")
-        Log.d("DetalleClinica", clinica.toString())
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detalle_clinica)
-        val barra5=findViewById<ProgressBar>(R.id.barra5)
-        val barra4=findViewById<ProgressBar>(R.id.barra4)
-        val barra3=findViewById<ProgressBar>(R.id.barra3)
-        val barra2=findViewById<ProgressBar>(R.id.barra2)
-        val barra1=findViewById<ProgressBar>(R.id.barra1)
-        val tx=findViewById<TextView>(R.id.textView9)
+
+        val clinica = intent.getParcelableExtra<Clinica>("CLINICA")
+
+        val botonVerResenias = findViewById<Button>(R.id.btn_mostrar_resenias)
+        botonVerResenias.setOnClickListener {
+            val intent = Intent(
+                this,
+                MostrarResenias::class.java
+            )
+            intent.putExtra("CLINICA",clinica)
+            startActivityForResult(intent, CODIGO_RESPUESTA_INTENT_EXPLICITO)
+        }
+
         if (clinica != null) {
-            tx.text=clinica.nombre_clinica
+            findViewById<TextView>(R.id.tv_direccion).setText("Direccion: " + clinica.direccion_clinica)
+            findViewById<TextView>(R.id.tv_telefono).setText("Teléfono: " + clinica.telefono_clinica)
+            findViewById<TextView>(R.id.tv_costo_consulta).setText("Costo de la consulta: $" + clinica.costo_consulta.toString())
+            findViewById<TextView>(R.id.tv_lunes).setText("Lunes      "+ clinica.horarios_atencion?.lunes)
+            findViewById<TextView>(R.id.tv_martes).setText("Martes     "+clinica.horarios_atencion?.martes)
+            findViewById<TextView>(R.id.tv_miercoles).setText("Miercoles  "+clinica.horarios_atencion?.miercoles)
+            findViewById<TextView>(R.id.tv_jueves).setText("Jueves     "+clinica.horarios_atencion?.jueves)
+            findViewById<TextView>(R.id.tv_viernes).setText("Viernes    "+clinica.horarios_atencion?.viernes)
+            findViewById<TextView>(R.id.tv_sabado).setText("Sabado     "+clinica.horarios_atencion?.sabado)
+            findViewById<TextView>(R.id.tv_domingo).setText("Domingo    "+clinica.horarios_atencion?.domingo)
+            findViewById<TextView>(R.id.tv_novedades).setText(clinica.novedades)
         }
-        else{
-            tx.text="Triste :c"
+
+        var servicios = ArrayList<Servicio>()
+        if (clinica != null) {
+            servicios = clinica.servicios!!
         }
-        barra5.progress=90
-        barra4.progress=54
-        barra3.progress=21
-        barra2.progress=50
-        barra1.progress=10
+        //Creacion del adaptador
+        val adaptador = ArrayAdapter(
+            this, //contexto
+            android.R.layout.simple_list_item_1, //Se define el Layout
+            servicios
+        )
+        //Se asigna el adaptador de la lista
+        val listViewClinicas = findViewById<ListView>(R.id.lv_servicios)
+        registerForContextMenu(listViewClinicas)
+        listViewClinicas.adapter = adaptador
+
+
 
     }
 }

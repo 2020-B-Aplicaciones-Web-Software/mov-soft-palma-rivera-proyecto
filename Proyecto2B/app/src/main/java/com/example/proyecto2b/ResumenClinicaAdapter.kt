@@ -79,7 +79,7 @@ class ResumenClinicaAdapter(
                 DetalleClinica::class.java
             )
             Log.d("ResumenClinica",clinica.toString())
-            detalleClinica.putExtra("Clinica", clinica)
+            detalleClinica.putExtra("CLINICA", clinica)
             activity.startActivityForResult(detalleClinica,CODIGO_RESPUESTA_INTENT_EXPLICITO)
 
         }
