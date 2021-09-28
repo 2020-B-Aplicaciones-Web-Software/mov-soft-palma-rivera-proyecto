@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+
+
     <fragment
         android:id="@+id/map"
         android:name="com.google.android.gms.maps.SupportMapFragment"
@@ -39,11 +41,56 @@
         app:layout_constraintTop_toTopOf="@+id/btn_explorar" />
 
     <Button
-        android:id="@+id/btn_ver"
+        android:id="@+id/btn_ver_detalle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:text="Ver"
         app:layout_constraintStart_toEndOf="@+id/btn_registrar"
         app:layout_constraintTop_toTopOf="@+id/btn_registrar" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_clinica"
+        android:layout_width="306dp"
+        android:layout_height="65dp"
+        android:layout_marginBottom="8dp"
+        android:checkable="true"
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/map"
+        app:layout_constraintEnd_toEndOf="@+id/map"
+        app:layout_constraintHorizontal_bias="0.472"
+        app:layout_constraintStart_toStartOf="@+id/map">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/nombre_clinica_mapa"
+                android:layout_width="190dp"
+                android:layout_height="46dp"
+                android:layout_marginStart="4dp"
+                android:text="Null"
+                android:textAppearance="?attr/textAppearanceHeadline6"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_ver"
+                style="?attr/borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="Ver"
+                app:layout_constraintBottom_toBottomOf="@+id/nombre_clinica_mapa"
+                app:layout_constraintStart_toEndOf="@+id/nombre_clinica_mapa"
+                app:layout_constraintTop_toTopOf="@+id/nombre_clinica_mapa"
+                app:layout_constraintVertical_bias="1.0" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
