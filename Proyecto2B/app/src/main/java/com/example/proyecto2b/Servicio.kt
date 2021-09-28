@@ -23,7 +23,7 @@ class Servicio (
     }
 
     override fun toString(): String {
-        return "Servicio(nombre_servicio=$nombre_servicio, costo_servicio=$costo_servicio)"
+        return "$nombre_servicio: $$costo_servicio"
     }
 
     companion object CREATOR : Parcelable.Creator<Servicio> {

@@ -151,7 +151,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="200dp"
             android:text="Horarios de Atención"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
@@ -599,7 +599,7 @@
             android:layout_marginTop="40dp"
             android:text="Registrar"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine" />
+            app:layout_constraintTop_toBottomOf="@+id/novedades" />
 
         <com.google.android.material.chip.ChipGroup
             android:id="@+id/chip_servicios"
@@ -621,7 +621,7 @@
             app:layout_constraintTop_toBottomOf="@+id/chip_servicios" />
 
         <EditText
-            android:id="@+id/editTextTextMultiLine"
+            android:id="@+id/novedades"
             android:layout_width="415dp"
             android:layout_height="107dp"
             android:layout_marginStart="4dp"
@@ -631,5 +631,44 @@
             android:inputType="textMultiLine"
             app:layout_constraintStart_toStartOf="@+id/textView35"
             app:layout_constraintTop_toBottomOf="@+id/textView35" />
+
+        <TextView
+            android:id="@+id/textView36"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="72dp"
+            android:text="Latitud"
+            app:layout_constraintStart_toStartOf="@+id/textView20"
+            app:layout_constraintTop_toBottomOf="@+id/textView20" />
+
+        <EditText
+            android:id="@+id/latitud"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="@+id/sitio_web"
+            app:layout_constraintTop_toBottomOf="@+id/sitio_web" />
+
+        <TextView
+            android:id="@+id/textView37"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="56dp"
+            android:text="Longitud"
+            app:layout_constraintStart_toStartOf="@+id/textView36"
+            app:layout_constraintTop_toBottomOf="@+id/textView36" />
+
+        <EditText
+            android:id="@+id/longitud"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="44dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="@+id/latitud"
+            app:layout_constraintTop_toBottomOf="@+id/latitud" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

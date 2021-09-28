@@ -8,24 +8,22 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
 import android.widget.*
+import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.net.toUri
+import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import android.widget.Toast
-
-import android.widget.EditText
-
-import android.widget.LinearLayout
-
-
+import com.google.firebase.storage.ktx.storage
 
 
 class RegistroClinica : AppCompatActivity() {
     var uri = ""
     lateinit var auth: FirebaseAuth
-    var servicios=ArrayList<Servicio>()
+    var servicios = ArrayList<Servicio>()
     // Initialize Firebase Auth
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -106,33 +104,99 @@ class RegistroClinica : AppCompatActivity() {
 
         val btnRegistrar = findViewById<Button>(R.id.registrar)
         btnRegistrar.setOnClickListener {
-            val horariosAtencion = getHorarios()
-            val servicios = getServicios()
-            val etiquetas = getEtiquetas()
 
-            /* val storage = Firebase.storage
-             val db = Firebase.firestore
-             val storageRef = storage.reference
+            val nombre_clinica = findViewById<EditText>(R.id.nombre_clinica).text.toString()
+            val foto_logo = "${findViewById<TextView>(R.id.nombre_clinica).text}.jpg"
+            val direccion_clinica = findViewById<EditText>(R.id.direccion_clinica).text.toString()
+            val telefono_clinica = findViewById<EditText>(R.id.telefono_clinica).text.toString()
+            val web_clinica = findViewById<EditText>(R.id.sitio_web).text.toString()
+            val costo_consulta = findViewById<EditText>(R.id.tarifa_base).text.toString()
+            val novedades = findViewById<EditText>(R.id.novedades).text.toString()
+            val latitud = findViewById<EditText>(R.id.latitud).text.toString().toDouble()
+            val longitud = findViewById<EditText>(R.id.longitud).text.toString().toDouble()
+            val resenias = ReseniaEvaluacion(0, 0, 0, 0, 0, 0, 0)
+            val horarios_atencion = getHorarios()
 
-             // Create a reference to 'images/mountains.jpg'
-             val mountainImagesRef =
-                 storageRef.child("images/${findViewById<TextView>(R.id.nombre_clinica).text}.jpg")
-             mountainImagesRef.putFile(uri.toUri())*/
+
+            val horarios = hashMapOf<String, Any?>(
+                "lunes" to horarios_atencion.lunes,
+                "martes" to horarios_atencion.martes,
+                "miercoles" to horarios_atencion.miercoles,
+                "jueves" to horarios_atencion.jueves,
+                "viernes" to horarios_atencion.viernes,
+                "sabado" to horarios_atencion.sabado,
+                "domingo" to horarios_atencion.domingo
+            )
+
+            val reseniasEvaluacion = hashMapOf<String, Any>(
+                "num_5" to resenias.num_5,
+                "num_4" to resenias.num_4,
+                "num_3" to resenias.num_3,
+                "num_2" to resenias.num_2,
+                "num_1" to resenias.num_1,
+                "promedio" to resenias.promedio,
+                "num_resenias" to resenias.num_resenias
+            )
+
+            val nuevaClinica = hashMapOf<String, Any>(
+                "nombre_clinica" to nombre_clinica,
+                "foto_logo" to foto_logo,
+                "direccion_clinica" to direccion_clinica,
+                "telefono_clinica" to telefono_clinica,
+                "web_clinica" to web_clinica,
+                "costo_consulta" to costo_consulta,
+                "novedades" to novedades,
+                "latitud" to latitud,
+                "longitud" to longitud,
+                "resenias" to reseniasEvaluacion,
+                "horarios_atencion" to horarios
+            )
+
+
+
+            val storage = Firebase.storage
+            val db = Firebase.firestore
+            val referencia = db.collection("clinica")
+
+            referencia
+                .add(nuevaClinica)
+                .addOnSuccessListener {
+                    val toast = Toast.makeText(applicationContext, "", Toast.LENGTH_SHORT)
+                    toast.setText("Clínica Registrada")
+                    toast.show()
+                }
+
+            referencia
+                .whereEqualTo("nombre_clinica", nombre_clinica)
+                .get()
+                .addOnSuccessListener { result ->
+                    for (document in result) {
+                        val referencia_documento = db.collection("clinica").document(document.id)
+                        for (servicio in servicios){
+                            referencia_documento.collection("servicios")
+                                .add(servicio)
+                                .addOnSuccessListener {  }
+                        }
+
+                    }
+                }
+
+
+
+            val storageRef = storage.reference
+
+            // Create a reference to 'images/mountains.jpg'
+            val mountainImagesRef =
+                storageRef.child("images/${foto_logo}")
+            mountainImagesRef.putFile(uri.toUri())
         }
     }
 
-    private fun getEtiquetas() {
 
-    }
+    fun showdialog() {
+        val valores = ArrayList<String>()
 
-    private fun getServicios() {
-
-    }
-
-    fun showdialog(){
-        val valores=ArrayList<String>()
-
-        val builder: AlertDialog.Builder= AlertDialog.Builder(this)
+        val builder: AlertDialog.Builder = AlertDialog.Builder(this)
         builder.setTitle("Registrar un servicio")
 
 
@@ -140,11 +204,11 @@ class RegistroClinica : AppCompatActivity() {
         layout.orientation = LinearLayout.VERTICAL
 
         val nombreEditText = EditText(this)
-        nombreEditText.hint="Ingrese el nombre del servicio"
+        nombreEditText.hint = "Ingrese el nombre del servicio"
         layout.addView(nombreEditText)
 
         val valorEditText = EditText(this)
-        valorEditText.hint="Ingrese el valor del servicio"
+        valorEditText.hint = "Ingrese el valor del servicio"
         layout.addView(valorEditText)
 
         builder.setView(layout)
@@ -164,15 +228,23 @@ class RegistroClinica : AppCompatActivity() {
                 )
 
             Log.d("Registro", servicios[0].toString())
+            updateChips()
         }
 
         builder.setNegativeButton(
-            "Cancel"
+            "Cancelar"
         ) { dialog, whichButton ->
             // what ever you want to do with No option.
         }
 
         builder.show()
+    }
+
+    private fun updateChips() {
+        val chipServicios = findViewById<ChipGroup>(R.id.chip_servicios)
+        val chip = Chip(this)
+        chip.text = servicios[servicios.size - 1].toString()
+        chipServicios.addView(chip)
     }
 
     private fun getHorarios(): HorariosAtencion {
@@ -244,7 +316,6 @@ class RegistroClinica : AppCompatActivity() {
             lunes, martes, miercoles, jueves, viernes, sabado, domingo
         )
     }
-
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
