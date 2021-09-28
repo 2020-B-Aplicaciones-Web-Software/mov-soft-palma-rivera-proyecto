@@ -18,15 +18,37 @@ class ResumenClinicas : AppCompatActivity() {
         ref.get()
             .addOnSuccessListener { documents ->
                 for (document in documents) {
-                    val nombre_clinica = document.get("nombre").toString()
-                    val telefono_clinia = document.get("telefono").toString()
-                    val calificacion = document.get("calificacion").toString().toDouble()
+                    val nombre_clinica = document.get("nombre_clinica").toString()
+                    val telefono_clinia = document.get("telefono_clinica").toString()
                     val costo_consulta = document.get("costo_consulta").toString().toDouble()
-                    val direccion = document.get("direccion").toString()
+
+                    val direccion = document.get("direccion_clinica").toString()
                     val foto_logo = document.get("foto_logo").toString()
                     val novedades = document.get("novedades").toString()
-                    val num_resenas = document.get("num_resenas").toString().toInt()
-                    val web = document.get("web").toString()
+                    val reseniaEvaluacionMapa = document.get("resenias") as Map<*, *>
+                    val reseniaEvaluacion = ReseniaEvaluacion(
+                        reseniaEvaluacionMapa.get("num_5").toString().toInt(),
+                        reseniaEvaluacionMapa.get("num_4").toString().toInt(),
+                        reseniaEvaluacionMapa.get("num_3").toString().toInt(),
+                        reseniaEvaluacionMapa.get("num_2").toString().toInt(),
+                        reseniaEvaluacionMapa.get("num_1").toString().toInt(),
+                        reseniaEvaluacionMapa.get("promedio").toString().toInt(),
+                        reseniaEvaluacionMapa.get("num_resenias").toString().toInt()
+                    )
+                    val web = document.get("web_clinica").toString()
+                    val latitud = document.get("latitud").toString().toDouble()
+                    val longitud = document.get("longitud").toString().toDouble()
+                    val horariosAtencionMapa = document.get("horarios_atencion") as Map<*, *>
+                    val horarios=HorariosAtencion(
+                        horariosAtencionMapa.get("lunes").toString(),
+                        horariosAtencionMapa.get("martes").toString(),
+                        horariosAtencionMapa.get("miercoles").toString(),
+                        horariosAtencionMapa.get("jueves").toString(),
+                        horariosAtencionMapa.get("viernes").toString(),
+                        horariosAtencionMapa.get("sabado").toString(),
+                        horariosAtencionMapa.get("domingo").toString(),
+
+                    )
                     lista.add(
                         Clinica(
                             nombre_clinica,
@@ -36,25 +58,11 @@ class ResumenClinicas : AppCompatActivity() {
                             web,
                             costo_consulta,
                             novedades,
-                            0.001,
-                            0.002,
-                            ReseniaEvaluacion(
-                                0,
-                                0,
-                                0,
-                                0,
-                                0,
-                                1,
-                                3
-                            ), HorariosAtencion(
-                                "Cerrado",
-                                "Cerrado",
-                                "Cerrado",
-                                "Cerrado",
-                                "Cerrado",
-                                "Cerrado",
-                                "Cerrado",
-                            ),ArrayList<Servicio>()
+                            latitud,
+                            longitud,
+                            reseniaEvaluacion
+                            , horarios
+                            , ArrayList<Servicio>()
                         )
                     )
                     Log.d("Storage", lista[0].toString())

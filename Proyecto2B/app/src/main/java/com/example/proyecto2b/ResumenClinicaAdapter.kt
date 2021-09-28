@@ -4,6 +4,7 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -49,14 +50,15 @@ class ResumenClinicaAdapter(
         val sr=storage.reference
 
         val clinicaResumen=listaClinicas[position]
-        val path= clinicaResumen.foto_logo?.let { sr.child(it) }
-        val file= File.createTempFile("profile","jpg")
+        val path= clinicaResumen.foto_logo?.let { sr.child("/images$it") }
         if (path != null) {
-            path.getFile(file)
-                .addOnSuccessListener {
-                    val bitmap=Drawable.createFromPath(file.toString())
-                    holder.foto.setImageDrawable(bitmap)
-                }
+            Log.d("ResumenClinica",path.path)
+        }
+        val file= File.createTempFile("profile","jpg")
+        path?.getFile(file)?.addOnSuccessListener {
+
+            val bitmap=Drawable.createFromPath(file.toString())
+            holder.foto.setImageDrawable(bitmap)
         }
         holder.nombreClinica.text=clinicaResumen.nombre_clinica
         holder.direccionClinica.text=clinicaResumen.direccion_clinica
