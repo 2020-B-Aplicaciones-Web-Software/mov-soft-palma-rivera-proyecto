@@ -39,7 +39,7 @@ class ResumenClinicas : AppCompatActivity() {
                     val latitud = document.get("latitud").toString().toDouble()
                     val longitud = document.get("longitud").toString().toDouble()
                     val horariosAtencionMapa = document.get("horarios_atencion") as Map<*, *>
-                    val horarios=HorariosAtencion(
+                    val horarios = HorariosAtencion(
                         horariosAtencionMapa.get("lunes").toString(),
                         horariosAtencionMapa.get("martes").toString(),
                         horariosAtencionMapa.get("miercoles").toString(),
@@ -48,7 +48,7 @@ class ResumenClinicas : AppCompatActivity() {
                         horariosAtencionMapa.get("sabado").toString(),
                         horariosAtencionMapa.get("domingo").toString(),
 
-                    )
+                        )
                     lista.add(
                         Clinica(
                             nombre_clinica,
@@ -60,9 +60,7 @@ class ResumenClinicas : AppCompatActivity() {
                             novedades,
                             latitud,
                             longitud,
-                            reseniaEvaluacion
-                            , horarios
-                            , ArrayList<Servicio>()
+                            reseniaEvaluacion, horarios, ArrayList<Servicio>()
                         )
                     )
                     Log.d("Storage", lista[0].toString())
@@ -74,12 +72,6 @@ class ResumenClinicas : AppCompatActivity() {
                 )
             }
     }
-/*
-        lista.add(
-            Clinica("La casa del perro","/","Cerquita","0999999","www.facebook.com",10.00,"Nada",10)
-        )
-
- */
 
 
     private fun iniciarRecyclerView(
@@ -89,8 +81,9 @@ class ResumenClinicas : AppCompatActivity() {
     ) {
         val adapter = rvClinica?.let {
             ResumenClinicaAdapter(
-                resumenClinicas::class.java, list,
-                it
+                resumenClinicas, list,
+                it,
+                this
             )
         }
         if (rvClinica != null) {

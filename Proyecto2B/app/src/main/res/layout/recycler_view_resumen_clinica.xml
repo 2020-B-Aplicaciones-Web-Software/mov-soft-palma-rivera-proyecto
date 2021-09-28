@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="400dp">
 
     <TextView
         android:id="@+id/nombre_clinica_resumen"
@@ -28,27 +28,6 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/nombre_clinica_resumen"
         app:layout_constraintTop_toBottomOf="@+id/nombre_clinica_resumen" />
-
-    <com.google.android.material.chip.ChipGroup
-        android:id="@+id/chips_etiquetas_resumen"
-        android:layout_width="364dp"
-        android:layout_height="91dp"
-        android:layout_marginTop="12dp"
-        app:layout_constraintEnd_toEndOf="@+id/horario_clinica_resumen"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/num_resena_resumen"
-        app:layout_constraintTop_toBottomOf="@+id/num_resena_resumen">
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chip5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chip4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </com.google.android.material.chip.ChipGroup>
 
     <TextView
         android:id="@+id/num_resena_resumen"
@@ -80,16 +59,6 @@
         app:layout_constraintStart_toStartOf="@+id/direccion_clinica_resumen"
         app:layout_constraintTop_toBottomOf="@+id/direccion_clinica_resumen" />
 
-    <ImageView
-        android:id="@+id/rating_resumen"
-        android:layout_width="104dp"
-        android:layout_height="18dp"
-        android:layout_marginTop="7dp"
-        app:layout_constraintEnd_toEndOf="@+id/foto_clinica_resumen"
-        app:layout_constraintStart_toStartOf="@+id/foto_clinica_resumen"
-        app:layout_constraintTop_toBottomOf="@+id/foto_clinica_resumen"
-        tools:srcCompat="@tools:sample/avatars" />
-
     <TextView
         android:id="@+id/horario_clinica_resumen"
         android:layout_width="239dp"
@@ -103,23 +72,41 @@
         android:id="@+id/btn_llamar_resumen"
         android:layout_width="33dp"
         android:layout_height="34dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="@+id/chips_etiquetas_resumen"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.003"
         app:layout_constraintStart_toStartOf="@+id/chips_etiquetas_resumen"
         app:layout_constraintTop_toBottomOf="@+id/chips_etiquetas_resumen"
         app:srcCompat="@android:drawable/stat_sys_phone_call" />
 
-    <ImageView
-        android:id="@+id/foto_clinica_resumen"
-        android:layout_width="106dp"
-        android:layout_height="102dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.052"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/backgrounds/scenic" />
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/chips_etiquetas_resumen"
+        android:layout_width="364dp"
+        android:layout_height="91dp"
+        android:layout_marginTop="36dp"
+        app:layout_constraintEnd_toEndOf="@+id/horario_clinica_resumen"
+        app:layout_constraintHorizontal_bias="0.923"
+        app:layout_constraintStart_toStartOf="@+id/num_resena_resumen"
+        app:layout_constraintTop_toBottomOf="@+id/num_resena_resumen">
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.chip.ChipGroup>
+
+    <RatingBar
+        android:id="@+id/rating_resumen"
+        android:layout_width="104dp"
+        android:layout_height="18dp"
+        android:layout_marginTop="14dp"
+        app:layout_constraintStart_toStartOf="@+id/foto_clinica_resumen"
+        app:layout_constraintTop_toBottomOf="@+id/foto_clinica_resumen" />
 
     <ImageView
         android:id="@+id/btn_mensaje_resumen"
@@ -129,7 +116,19 @@
         app:layout_constraintBottom_toBottomOf="@+id/btn_llamar_resumen"
         app:layout_constraintStart_toEndOf="@+id/btn_llamar_resumen"
         app:layout_constraintTop_toTopOf="@+id/btn_llamar_resumen"
-        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/ic_baseline_message_24" />
+
+    <ImageView
+        android:id="@+id/foto_clinica_resumen"
+        android:layout_width="106dp"
+        android:layout_height="102dp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.052"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

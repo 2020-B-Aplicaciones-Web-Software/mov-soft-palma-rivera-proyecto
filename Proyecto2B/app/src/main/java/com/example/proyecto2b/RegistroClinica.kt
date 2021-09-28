@@ -255,62 +255,55 @@ class RegistroClinica : AppCompatActivity() {
         val switchViernes = findViewById<Switch>(R.id.cerrado_viernes)
         val switchSabado = findViewById<Switch>(R.id.cerrado_sabado)
         val switchDomingo = findViewById<Switch>(R.id.cerrado_domingo)
-        var lunes: String
-        var martes: String
-        var miercoles: String
-        var jueves: String
-        var viernes: String
-        var sabado: String
-        var domingo: String
+        val lunes: String
+        val martes: String
+        val miercoles: String
+        val jueves: String
+        val viernes: String
+        val sabado: String
+        val domingo: String
 
-        if (switchLunes.isChecked) {
-            lunes = "Cerrado"
+        lunes = if (switchLunes.isChecked) {
+            "Cerrado"
         } else {
-            lunes =
-                findViewById<EditText>(R.id.hora_apertura_lunes).text.toString() + " - " +
-                        findViewById<EditText>(R.id.hora_cierre_lunes).text.toString()
+            findViewById<EditText>(R.id.hora_apertura_lunes).text.toString() + " - " +
+                    findViewById<EditText>(R.id.hora_cierre_lunes).text.toString()
         }
-        if (switchMartes.isChecked) {
-            martes = "Cerrado"
+        martes = if (switchMartes.isChecked) {
+            "Cerrado"
         } else {
-            martes =
-                findViewById<EditText>(R.id.hora_apertura_martes).text.toString() + " - " +
-                        findViewById<EditText>(R.id.hora_cierre_martes).text.toString()
+            findViewById<EditText>(R.id.hora_apertura_martes).text.toString() + " - " +
+                    findViewById<EditText>(R.id.hora_cierre_martes).text.toString()
         }
-        if (switchMiercoles.isChecked) {
-            miercoles = "Cerrado"
+        miercoles = if (switchMiercoles.isChecked) {
+            "Cerrado"
         } else {
-            miercoles =
-                findViewById<EditText>(R.id.hora_apertura_miercoles).text.toString() + " - " +
-                        findViewById<EditText>(R.id.hora_cierre_miercoles).text.toString()
+            findViewById<EditText>(R.id.hora_apertura_miercoles).text.toString() + " - " +
+                    findViewById<EditText>(R.id.hora_cierre_miercoles).text.toString()
         }
-        if (switchJueves.isChecked) {
-            jueves = "Cerrado"
+        jueves = if (switchJueves.isChecked) {
+            "Cerrado"
         } else {
-            jueves =
-                findViewById<EditText>(R.id.hora_apertura_jueves).text.toString() + " - " +
-                        findViewById<EditText>(R.id.hora_cierre_jueves).text.toString()
+            findViewById<EditText>(R.id.hora_apertura_jueves).text.toString() + " - " +
+                    findViewById<EditText>(R.id.hora_cierre_jueves).text.toString()
         }
-        if (switchViernes.isChecked) {
-            viernes = "Cerrado"
+        viernes = if (switchViernes.isChecked) {
+            "Cerrado"
         } else {
-            viernes =
-                findViewById<EditText>(R.id.hora_apertura_viernes).text.toString() + " - " +
-                        findViewById<EditText>(R.id.hora_cierre_viernes).text.toString()
+            findViewById<EditText>(R.id.hora_apertura_viernes).text.toString() + " - " +
+                    findViewById<EditText>(R.id.hora_cierre_viernes).text.toString()
         }
-        if (switchSabado.isChecked) {
-            sabado = "Cerrado"
+        sabado = if (switchSabado.isChecked) {
+            "Cerrado"
         } else {
-            sabado =
-                findViewById<EditText>(R.id.hora_apertura_sabado).text.toString() + " - " +
-                        findViewById<EditText>(R.id.hora_cierre_sabado).text.toString()
+            findViewById<EditText>(R.id.hora_apertura_sabado).text.toString() + " - " +
+                    findViewById<EditText>(R.id.hora_cierre_sabado).text.toString()
         }
-        if (switchDomingo.isChecked) {
-            domingo = "Cerrado"
+        domingo = if (switchDomingo.isChecked) {
+            "Cerrado"
         } else {
-            domingo =
-                findViewById<EditText>(R.id.hora_apertura_domingo).text.toString() + " - " +
-                        findViewById<EditText>(R.id.hora_cierre_domingo).text.toString()
+            findViewById<EditText>(R.id.hora_apertura_domingo).text.toString() + " - " +
+                    findViewById<EditText>(R.id.hora_cierre_domingo).text.toString()
         }
         return HorariosAtencion(
             lunes, martes, miercoles, jueves, viernes, sabado, domingo
