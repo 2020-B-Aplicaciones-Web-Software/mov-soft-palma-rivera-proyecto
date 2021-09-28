@@ -5,7 +5,6 @@ import android.content.Intent
 import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.provider.MediaStore
-import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
@@ -38,14 +37,14 @@ class RegistroClinica : AppCompatActivity() {
             }
 
 
-        val btn = findViewById<Button>(R.id.button3)
+        val btn = findViewById<Button>(R.id.btn_subir_foto)
         btn.setOnClickListener {
             val intent = Intent(Intent.ACTION_PICK)
             intent.type = "image/*"
             startActivityForResult(intent, 0)
         }
 
-        val btnSubir = findViewById<Button>(R.id.button4)
+        val btnSubir = findViewById<Button>(R.id.registrar)
         btnSubir.setOnClickListener {
             val storage = Firebase.storage
             var storageRef = storage.reference
@@ -63,7 +62,7 @@ class RegistroClinica : AppCompatActivity() {
             uri = data.data.toString()
             val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, data.data)
             val drawable = BitmapDrawable(bitmap)
-            findViewById<ImageView>(R.id.imageView).setImageDrawable(drawable)
+            findViewById<ImageView>(R.id.img_logo).setImageDrawable(drawable)
         }
     }
 

@@ -1,39 +1,635 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".RegistroClinica">
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="120dp"
-        android:layout_marginTop="104dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars" />
+    android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Button"
-        app:layout_constraintEnd_toEndOf="@+id/imageView"
-        app:layout_constraintStart_toStartOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="3000dp"
+        tools:context=".RegistroClinica">
 
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
-        android:text="Button"
-        app:layout_constraintEnd_toEndOf="@+id/button3"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/button3"
-        app:layout_constraintTop_toBottomOf="@+id/button3" />
+        <ImageView
+            android:id="@+id/img_logo"
+            android:layout_width="107dp"
+            android:layout_height="102dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="32dp"
+            app:layout_constraintEnd_toEndOf="@+id/textView8"
+            app:layout_constraintTop_toBottomOf="@+id/textView8"
+            tools:srcCompat="@tools:sample/avatars" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Registro de Clínica"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.501"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btn_subir_foto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Button"
+            app:layout_constraintEnd_toEndOf="@+id/img_logo"
+            app:layout_constraintStart_toStartOf="@+id/img_logo"
+            app:layout_constraintTop_toBottomOf="@+id/img_logo" />
+
+        <EditText
+            android:id="@+id/telefono_clinica"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:ems="10"
+            android:inputType="phone"
+            android:minHeight="48dp"
+            app:layout_constraintEnd_toEndOf="@+id/nombre_clinica"
+            app:layout_constraintTop_toBottomOf="@+id/nombre_clinica" />
+
+        <TextView
+            android:id="@+id/textView19"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="44dp"
+            android:text="Tarifa Base Consulta"
+            app:layout_constraintStart_toStartOf="@+id/textView18"
+            app:layout_constraintTop_toBottomOf="@+id/textView18" />
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="36dp"
+            android:text="Nombre de la Clínica"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_subir_foto" />
+
+        <TextView
+            android:id="@+id/textView17"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="Número de Teléfono"
+            app:layout_constraintStart_toStartOf="@+id/textView13"
+            app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+        <EditText
+            android:id="@+id/sitio_web"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:minHeight="48dp"
+            app:layout_constraintEnd_toEndOf="@+id/tarifa_base"
+            app:layout_constraintTop_toBottomOf="@+id/tarifa_base" />
+
+        <EditText
+            android:id="@+id/tarifa_base"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:inputType="numberDecimal"
+            android:minHeight="48dp"
+            app:layout_constraintEnd_toEndOf="@+id/direccion_clinica"
+            app:layout_constraintTop_toBottomOf="@+id/direccion_clinica" />
+
+        <EditText
+            android:id="@+id/direccion_clinica"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:minHeight="48dp"
+            app:layout_constraintEnd_toEndOf="@+id/telefono_clinica"
+            app:layout_constraintTop_toBottomOf="@+id/telefono_clinica" />
+
+        <TextView
+            android:id="@+id/textView18"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="44dp"
+            android:text="Dirección"
+            app:layout_constraintStart_toStartOf="@+id/textView17"
+            app:layout_constraintTop_toBottomOf="@+id/textView17" />
+
+        <TextView
+            android:id="@+id/textView20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="44dp"
+            android:text="Sitio web"
+            app:layout_constraintStart_toStartOf="@+id/textView19"
+            app:layout_constraintTop_toBottomOf="@+id/textView19" />
+
+        <EditText
+            android:id="@+id/nombre_clinica"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:minHeight="48dp"
+            app:layout_constraintBottom_toBottomOf="@+id/textView13"
+            app:layout_constraintStart_toEndOf="@+id/textView13"
+            app:layout_constraintTop_toTopOf="@+id/textView13" />
+
+
+        <TextView
+            android:id="@+id/textView21"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:text="Horarios de Atención"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sitio_web" />
+
+        <TextView
+            android:id="@+id/lunes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:text="Lunes"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView21" />
+
+        <EditText
+            android:id="@+id/hora_apertura_lunes"
+            android:layout_width="84dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="28dp"
+            android:ems="10"
+            android:inputType="time"
+            app:layout_constraintBottom_toBottomOf="@+id/lunes"
+            app:layout_constraintStart_toEndOf="@+id/lunes"
+            app:layout_constraintTop_toTopOf="@+id/lunes"
+            app:layout_constraintVertical_bias="0.482" />
+
+        <TextView
+            android:id="@+id/a1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="a"
+            app:layout_constraintBottom_toBottomOf="@+id/hora_apertura_lunes"
+            app:layout_constraintStart_toEndOf="@+id/hora_apertura_lunes"
+            app:layout_constraintTop_toTopOf="@+id/hora_apertura_lunes"
+            app:layout_constraintVertical_bias="0.689" />
+
+        <EditText
+            android:id="@+id/hora_cierre_lunes"
+            android:layout_width="84dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="12dp"
+            android:ems="10"
+            android:inputType="time"
+            app:layout_constraintBottom_toBottomOf="@+id/a1"
+            app:layout_constraintEnd_toStartOf="@+id/cerrado_lunes"
+            app:layout_constraintTop_toTopOf="@+id/a1"
+            app:layout_constraintVertical_bias="0.689" />
+
+        <Switch
+            android:id="@+id/cerrado_lunes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:minHeight="48dp"
+            android:text="Cerrado"
+            app:layout_constraintBottom_toBottomOf="@+id/hora_cierre_lunes"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/hora_cierre_lunes"
+            app:layout_constraintVertical_bias="0.0" />
+
+
+        <TextView
+            android:id="@+id/martes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="44dp"
+            android:text="Martes"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lunes" />
+
+        <EditText
+            android:id="@+id/hora_apertura_martes"
+            android:layout_width="84dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="20dp"
+            android:ems="10"
+            android:inputType="time"
+            app:layout_constraintBottom_toBottomOf="@+id/martes"
+            app:layout_constraintStart_toEndOf="@+id/martes"
+            app:layout_constraintTop_toTopOf="@+id/martes"
+            app:layout_constraintVertical_bias="0.482" />
+
+        <TextView
+            android:id="@+id/a2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="a"
+            app:layout_constraintBottom_toBottomOf="@+id/hora_apertura_martes"
+            app:layout_constraintStart_toEndOf="@+id/hora_apertura_martes"
+            app:layout_constraintTop_toTopOf="@+id/hora_apertura_martes"
+            app:layout_constraintVertical_bias="0.482" />
+
+        <EditText
+            android:id="@+id/hora_cierre_martes"
+            android:layout_width="84dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="12dp"
+            android:ems="10"
+            android:inputType="time"
+            app:layout_constraintBottom_toBottomOf="@+id/a2"
+            app:layout_constraintEnd_toStartOf="@+id/cerrado_martes"
+            app:layout_constraintTop_toTopOf="@+id/a2"
+            app:layout_constraintVertical_bias="0.482" />
+
+        <Switch
+            android:id="@+id/cerrado_martes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:minHeight="48dp"
+            android:text="Cerrado"
+            app:layout_constraintBottom_toBottomOf="@+id/hora_cierre_martes"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/hora_cierre_martes"
+            app:layout_constraintVertical_bias="0.0" />
+
+
+        <TextView
+            android:id="@+id/miercoles"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="40dp"
+            android:text="Miercoles"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/martes" />
+
+        <EditText
+            android:id="@+id/hora_apertura_miercoles"
+            android:layout_width="84dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="8dp"
+            android:ems="10"
+            android:inputType="time"
+            app:layout_constraintBottom_toBottomOf="@+id/miercoles"
+            app:layout_constraintStart_toEndOf="@+id/miercoles"
+            app:layout_constraintTop_toTopOf="@+id/miercoles"
+            app:layout_constraintVertical_bias="0.551" />
+
+        <TextView
+            android:id="@+id/a3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="a"
+            app:layout_constraintBottom_toBottomOf="@+id/hora_apertura_miercoles"
+            app:layout_constraintStart_toEndOf="@+id/hora_apertura_miercoles"
+            app:layout_constraintTop_toTopOf="@+id/hora_apertura_miercoles"
+            app:layout_constraintVertical_bias="0.428" />
+
+        <EditText
+            android:id="@+id/hora_cierre_miercoles"
+            android:layout_width="84dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="12dp"
+            android:ems="10"
+            android:inputType="time"
+            app:layout_constraintBottom_toBottomOf="@+id/a3"
+            app:layout_constraintEnd_toStartOf="@+id/cerrado_miercoles"
+            app:layout_constraintTop_toTopOf="@+id/a3"
+            app:layout_constraintVertical_bias="0.379" />
+
+        <Switch
+            android:id="@+id/cerrado_miercoles"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:minHeight="48dp"
+            android:text="Cerrado"
+            app:layout_constraintBottom_toBottomOf="@+id/hora_cierre_miercoles"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/hora_cierre_miercoles"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/jueves"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="48dp"
+            android:text="Jueves"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/miercoles" />
+
+        <EditText
+            android:id="@+id/hora_apertura_jueves"
+            android:layout_width="84dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="24dp"
+            android:ems="10"
+            android:inputType="time"
+            app:layout_constraintBottom_toBottomOf="@+id/jueves"
+            app:layout_constraintStart_toEndOf="@+id/jueves"
+            app:layout_constraintTop_toTopOf="@+id/jueves"
+            app:layout_constraintVertical_bias="0.689" />
+
+        <TextView
+            android:id="@+id/a4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="a"
+            app:layout_constraintBottom_toBottomOf="@+id/hora_apertura_jueves"
+            app:layout_constraintStart_toEndOf="@+id/hora_apertura_jueves"
+            app:layout_constraintTop_toTopOf="@+id/hora_apertura_jueves"
+            app:layout_constraintVertical_bias="0.413" />
+
+        <EditText
+            android:id="@+id/hora_cierre_jueves"
+            android:layout_width="84dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="12dp"
+            android:ems="10"
+            android:inputType="time"
+            app:layout_constraintBottom_toBottomOf="@+id/a4"
+            app:layout_constraintEnd_toStartOf="@+id/cerrado_jueves"
+            app:layout_constraintTop_toTopOf="@+id/a4"
+            app:layout_constraintVertical_bias="0.448" />
+
+        <Switch
+            android:id="@+id/cerrado_jueves"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:minHeight="48dp"
+            android:text="Cerrado"
+            app:layout_constraintBottom_toBottomOf="@+id/hora_cierre_jueves"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/hora_cierre_jueves"
+            app:layout_constraintVertical_bias="0.0" />
+
+
+        <TextView
+            android:id="@+id/viernes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="48dp"
+            android:text="Viernes"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/jueves" />
+
+        <EditText
+            android:id="@+id/hora_apertura_viernes"
+            android:layout_width="84dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="24dp"
+            android:ems="10"
+            android:inputType="time"
+            app:layout_constraintBottom_toBottomOf="@+id/viernes"
+            app:layout_constraintStart_toEndOf="@+id/viernes"
+            app:layout_constraintTop_toTopOf="@+id/viernes"
+            app:layout_constraintVertical_bias="0.689" />
+
+        <TextView
+            android:id="@+id/a5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="a"
+            app:layout_constraintBottom_toBottomOf="@+id/hora_apertura_viernes"
+            app:layout_constraintStart_toEndOf="@+id/hora_apertura_viernes"
+            app:layout_constraintTop_toTopOf="@+id/hora_apertura_viernes"
+            app:layout_constraintVertical_bias="0.344" />
+
+        <EditText
+            android:id="@+id/hora_cierre_viernes"
+            android:layout_width="84dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="12dp"
+            android:ems="10"
+            android:inputType="time"
+            app:layout_constraintBottom_toBottomOf="@+id/a5"
+            app:layout_constraintEnd_toStartOf="@+id/cerrado_viernes"
+            app:layout_constraintTop_toTopOf="@+id/a5"
+            app:layout_constraintVertical_bias="0.448" />
+
+        <Switch
+            android:id="@+id/cerrado_viernes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:minHeight="48dp"
+            android:text="Cerrado"
+            app:layout_constraintBottom_toBottomOf="@+id/hora_cierre_viernes"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/hora_cierre_viernes"
+            app:layout_constraintVertical_bias="0.0" />
+
+
+        <TextView
+            android:id="@+id/sabado"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="48dp"
+            android:text="Sábado"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/viernes" />
+
+        <EditText
+            android:id="@+id/hora_apertura_sabado"
+            android:layout_width="84dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="24dp"
+            android:ems="10"
+            android:inputType="time"
+            app:layout_constraintBottom_toBottomOf="@+id/sabado"
+            app:layout_constraintStart_toEndOf="@+id/sabado"
+            app:layout_constraintTop_toTopOf="@+id/sabado"
+            app:layout_constraintVertical_bias="0.689" />
+
+        <TextView
+            android:id="@+id/a6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="a"
+            app:layout_constraintBottom_toBottomOf="@+id/hora_apertura_sabado"
+            app:layout_constraintStart_toEndOf="@+id/hora_apertura_sabado"
+            app:layout_constraintTop_toTopOf="@+id/hora_apertura_sabado"
+            app:layout_constraintVertical_bias="0.413" />
+
+        <EditText
+            android:id="@+id/hora_cierre_sabado"
+            android:layout_width="84dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="12dp"
+            android:ems="10"
+            android:inputType="time"
+            app:layout_constraintBottom_toBottomOf="@+id/a6"
+            app:layout_constraintEnd_toStartOf="@+id/cerrado_sabado"
+            app:layout_constraintTop_toTopOf="@+id/a6"
+            app:layout_constraintVertical_bias="0.448" />
+
+        <Switch
+            android:id="@+id/cerrado_sabado"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:minHeight="48dp"
+            android:text="Cerrado"
+            app:layout_constraintBottom_toBottomOf="@+id/hora_cierre_sabado"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/hora_cierre_sabado"
+            app:layout_constraintVertical_bias="0.0" />
+
+
+        <TextView
+            android:id="@+id/domingo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="48dp"
+            android:text="Domingo"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sabado" />
+
+        <EditText
+            android:id="@+id/hora_apertura_domingo"
+            android:layout_width="84dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="16dp"
+            android:ems="10"
+            android:inputType="time"
+            app:layout_constraintBottom_toBottomOf="@+id/domingo"
+            app:layout_constraintStart_toEndOf="@+id/domingo"
+            app:layout_constraintTop_toTopOf="@+id/domingo"
+            app:layout_constraintVertical_bias="0.62" />
+
+        <TextView
+            android:id="@+id/a7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="a"
+            app:layout_constraintBottom_toBottomOf="@+id/hora_apertura_domingo"
+            app:layout_constraintStart_toEndOf="@+id/hora_apertura_domingo"
+            app:layout_constraintTop_toTopOf="@+id/hora_apertura_domingo"
+            app:layout_constraintVertical_bias="0.31" />
+
+        <EditText
+            android:id="@+id/hora_cierre_domingo"
+            android:layout_width="84dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="12dp"
+            android:ems="10"
+            android:inputType="time"
+            app:layout_constraintBottom_toBottomOf="@+id/a7"
+            app:layout_constraintEnd_toStartOf="@+id/cerrado_domingo"
+            app:layout_constraintTop_toTopOf="@+id/a7"
+            app:layout_constraintVertical_bias="0.448" />
+
+        <Switch
+            android:id="@+id/cerrado_domingo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:minHeight="48dp"
+            android:text="Cerrado"
+            app:layout_constraintBottom_toBottomOf="@+id/hora_cierre_domingo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/hora_cierre_domingo"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/textView30"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="64dp"
+            android:text="Etiquetas"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/domingo" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chip_etiquetas"
+            android:layout_width="412dp"
+            android:layout_height="123dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="@+id/textView30"
+            app:layout_constraintTop_toBottomOf="@+id/textView30">
+
+        </com.google.android.material.chip.ChipGroup>
+
+        <TextView
+            android:id="@+id/textView34"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Servicios"
+            app:layout_constraintStart_toStartOf="@+id/chip_etiquetas"
+            app:layout_constraintTop_toBottomOf="@+id/chip_etiquetas" />
+
+        <Button
+            android:id="@+id/registrar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="320dp"
+            android:layout_marginTop="40dp"
+            android:text="Registrar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroup"
+            android:layout_width="416dp"
+            android:layout_height="126dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="@+id/textView34"
+            app:layout_constraintTop_toBottomOf="@+id/textView34">
+
+        </com.google.android.material.chip.ChipGroup>
+
+        <TextView
+            android:id="@+id/textView35"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="27dp"
+            android:text="Novedades"
+            app:layout_constraintStart_toStartOf="@+id/chipGroup"
+            app:layout_constraintTop_toBottomOf="@+id/chipGroup" />
+
+        <EditText
+            android:id="@+id/editTextTextMultiLine"
+            android:layout_width="415dp"
+            android:layout_height="107dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="44dp"
+            android:ems="10"
+            android:gravity="start|top"
+            android:inputType="textMultiLine"
+            app:layout_constraintStart_toStartOf="@+id/textView35"
+            app:layout_constraintTop_toBottomOf="@+id/textView35" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
