@@ -36,8 +36,25 @@ class ResumenClinicas : AppCompatActivity() {
                             web,
                             costo_consulta,
                             novedades,
-                            num_resenas,
-                            calificacion
+                            0.001,
+                            0.002,
+                            ReseniaEvaluacion(
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                1,
+                                3
+                            ), HorariosAtencion(
+                                "Cerrado",
+                                "Cerrado",
+                                "Cerrado",
+                                "Cerrado",
+                                "Cerrado",
+                                "Cerrado",
+                                "Cerrado",
+                            ),ArrayList<Servicio>()
                         )
                     )
                     Log.d("Storage", lista[0].toString())
@@ -48,14 +65,13 @@ class ResumenClinicas : AppCompatActivity() {
                     rvClinica
                 )
             }
-            }
+    }
 /*
         lista.add(
             Clinica("La casa del perro","/","Cerquita","0999999","www.facebook.com",10.00,"Nada",10)
         )
 
  */
-
 
 
     private fun iniciarRecyclerView(

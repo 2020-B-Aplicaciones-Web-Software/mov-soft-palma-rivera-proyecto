@@ -49,19 +49,21 @@ class ResumenClinicaAdapter(
         val sr=storage.reference
 
         val clinicaResumen=listaClinicas[position]
-        val path=sr.child(clinicaResumen.foto_logo)
+        val path= clinicaResumen.foto_logo?.let { sr.child(it) }
         val file= File.createTempFile("profile","jpg")
-        path.getFile(file)
-            .addOnSuccessListener {
-                val bitmap=Drawable.createFromPath(file.toString())
-                holder.foto.setImageDrawable(bitmap)
-            }
+        if (path != null) {
+            path.getFile(file)
+                .addOnSuccessListener {
+                    val bitmap=Drawable.createFromPath(file.toString())
+                    holder.foto.setImageDrawable(bitmap)
+                }
+        }
         holder.nombreClinica.text=clinicaResumen.nombre_clinica
         holder.direccionClinica.text=clinicaResumen.direccion_clinica
         holder.telefonoClinica.text=clinicaResumen.telefono_clinica
         holder.horarioClinica.text="10:00"
         holder.calificacionClinica.setImageResource(R.drawable.ic_baseline_message_24)
-        holder.numResenas.text=clinicaResumen.num_resenas.toString()
+        holder.numResenas.text= clinicaResumen.resenias?.num_resenias.toString()
 
     }
 
