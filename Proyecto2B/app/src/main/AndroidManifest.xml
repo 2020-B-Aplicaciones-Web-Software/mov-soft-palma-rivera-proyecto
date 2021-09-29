@@ -7,6 +7,8 @@
          location permissions for the "MyLocation" functionality.
     -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
         android:allowBackup="true"
@@ -35,12 +37,6 @@
 
         <activity
             android:name=".RegistroClinica"
-            android:exported="true" />
-        <activity
-            android:name=".EscribirResena"
-            android:exported="true" />
-        <activity
-            android:name=".ResumenResenas"
             android:exported="true" />
         <activity
             android:name=".DetalleClinica"

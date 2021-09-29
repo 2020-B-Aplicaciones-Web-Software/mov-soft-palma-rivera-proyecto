@@ -3,132 +3,134 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="400dp">
+    android:layout_height="280dp">
 
-    <TextView
-        android:id="@+id/nombre_clinica_resumen"
-        android:layout_width="236dp"
-        android:layout_height="43dp"
-        android:layout_marginStart="16dp"
-        android:text='Clínica Veterinaria "La Casa de las Mascotas"'
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/foto_clinica_resumen"
-        app:layout_constraintStart_toEndOf="@+id/foto_clinica_resumen"
-        app:layout_constraintTop_toTopOf="@+id/foto_clinica_resumen"
-        app:layout_constraintVertical_bias="0.0" />
 
-    <TextView
-        android:id="@+id/direccion_clinica_resumen"
-        android:layout_width="238dp"
-        android:layout_height="42dp"
-        android:layout_marginTop="8dp"
-        android:text="Dirección: lalalalalalalalal alallalala alalalala"
-        app:layout_constraintEnd_toEndOf="@+id/nombre_clinica_resumen"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/nombre_clinica_resumen"
-        app:layout_constraintTop_toBottomOf="@+id/nombre_clinica_resumen" />
-
-    <TextView
-        android:id="@+id/num_resena_resumen"
-        android:layout_width="104dp"
-        android:layout_height="19dp"
-        android:text="3 Reseñas"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="@+id/rating_resumen"
-        app:layout_constraintStart_toStartOf="@+id/rating_resumen"
-        app:layout_constraintTop_toBottomOf="@+id/rating_resumen" />
-
-    <Button
-        android:id="@+id/btn_mas_info_clinica"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="más Información"
-        app:layout_constraintEnd_toEndOf="@+id/chips_etiquetas_resumen"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/chips_etiquetas_resumen"
-        app:layout_constraintTop_toBottomOf="@+id/chips_etiquetas_resumen" />
-
-    <TextView
-        android:id="@+id/telefono_clinica_resumen"
-        android:layout_width="239dp"
-        android:layout_height="23dp"
-        android:text="Teléfono: 099999999"
-        app:layout_constraintEnd_toEndOf="@+id/direccion_clinica_resumen"
-        app:layout_constraintStart_toStartOf="@+id/direccion_clinica_resumen"
-        app:layout_constraintTop_toBottomOf="@+id/direccion_clinica_resumen" />
-
-    <TextView
-        android:id="@+id/horario_clinica_resumen"
-        android:layout_width="239dp"
-        android:layout_height="23dp"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="@+id/telefono_clinica_resumen"
-        app:layout_constraintStart_toStartOf="@+id/telefono_clinica_resumen"
-        app:layout_constraintTop_toBottomOf="@+id/telefono_clinica_resumen" />
-
-    <ImageView
-        android:id="@+id/btn_llamar_resumen"
-        android:layout_width="33dp"
-        android:layout_height="34dp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintEnd_toEndOf="@+id/chips_etiquetas_resumen"
-        app:layout_constraintHorizontal_bias="0.003"
-        app:layout_constraintStart_toStartOf="@+id/chips_etiquetas_resumen"
-        app:layout_constraintTop_toBottomOf="@+id/chips_etiquetas_resumen"
-        app:srcCompat="@android:drawable/stat_sys_phone_call" />
-
-    <com.google.android.material.chip.ChipGroup
-        android:id="@+id/chips_etiquetas_resumen"
-        android:layout_width="364dp"
-        android:layout_height="91dp"
-        android:layout_marginTop="36dp"
-        app:layout_constraintEnd_toEndOf="@+id/horario_clinica_resumen"
-        app:layout_constraintHorizontal_bias="0.923"
-        app:layout_constraintStart_toStartOf="@+id/num_resena_resumen"
-        app:layout_constraintTop_toBottomOf="@+id/num_resena_resumen">
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chip5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chip4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </com.google.android.material.chip.ChipGroup>
-
-    <RatingBar
-        android:id="@+id/rating_resumen"
-        android:layout_width="104dp"
-        android:layout_height="18dp"
-        android:layout_marginTop="14dp"
-        app:layout_constraintStart_toStartOf="@+id/foto_clinica_resumen"
-        app:layout_constraintTop_toBottomOf="@+id/foto_clinica_resumen" />
-
-    <ImageView
-        android:id="@+id/btn_mensaje_resumen"
-        android:layout_width="30dp"
-        android:layout_height="29dp"
-        android:layout_marginStart="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/btn_llamar_resumen"
-        app:layout_constraintStart_toEndOf="@+id/btn_llamar_resumen"
-        app:layout_constraintTop_toTopOf="@+id/btn_llamar_resumen"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/ic_baseline_message_24" />
-
-    <ImageView
-        android:id="@+id/foto_clinica_resumen"
-        android:layout_width="106dp"
-        android:layout_height="102dp"
-        android:layout_marginTop="40dp"
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_clinica"
+        android:layout_width="375dp"
+        android:layout_height="240dp"
+        android:checkable="true"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.052"
+        app:layout_constraintHorizontal_bias="0.484"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/backgrounds/scenic" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="386dp"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/nombre_clinica_resumen"
+                android:layout_width="236dp"
+                android:layout_height="43dp"
+                android:layout_marginStart="16dp"
+                android:text='Clínica Veterinaria "La Casa de las Mascotas"'
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/foto_clinica_resumen"
+                app:layout_constraintStart_toEndOf="@+id/foto_clinica_resumen"
+                app:layout_constraintTop_toTopOf="@+id/foto_clinica_resumen"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <TextView
+                android:id="@+id/direccion_clinica_resumen"
+                android:layout_width="200dp"
+                android:layout_height="42dp"
+                android:layout_marginTop="8dp"
+                android:text="Dirección: lalalalalalalalal alallalala alalalala"
+                app:layout_constraintEnd_toEndOf="@+id/nombre_clinica_resumen"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/nombre_clinica_resumen"
+                app:layout_constraintTop_toBottomOf="@+id/nombre_clinica_resumen" />
+
+            <TextView
+                android:id="@+id/num_resena_resumen"
+                android:layout_width="104dp"
+                android:layout_height="19dp"
+                android:layout_marginTop="8dp"
+                android:text="3 Reseñas"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="@+id/rating_resumen"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/rating_resumen"
+                app:layout_constraintTop_toBottomOf="@+id/rating_resumen" />
+
+            <Button
+                android:id="@+id/btn_mas_info_clinica"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="más Información"
+                app:layout_constraintEnd_toEndOf="@+id/horario_clinica_resumen"
+                app:layout_constraintTop_toBottomOf="@+id/horario_clinica_resumen" />
+
+            <TextView
+                android:id="@+id/telefono_clinica_resumen"
+                android:layout_width="200dp"
+                android:layout_height="23dp"
+                android:text="Teléfono: 099999999"
+                app:layout_constraintEnd_toEndOf="@+id/direccion_clinica_resumen"
+                app:layout_constraintStart_toStartOf="@+id/direccion_clinica_resumen"
+                app:layout_constraintTop_toBottomOf="@+id/direccion_clinica_resumen" />
+
+
+            <TextView
+                android:id="@+id/horario_clinica_resumen"
+                android:layout_width="200dp"
+                android:layout_height="23dp"
+                android:layout_marginTop="4dp"
+                android:text="TextView"
+                app:layout_constraintEnd_toEndOf="@+id/telefono_clinica_resumen"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/telefono_clinica_resumen"
+                app:layout_constraintTop_toBottomOf="@+id/telefono_clinica_resumen" />
+
+            <ImageView
+                android:id="@+id/btn_llamar_resumen"
+                android:layout_width="33dp"
+                android:layout_height="34dp"
+                android:layout_marginTop="12dp"
+                app:layout_constraintStart_toStartOf="@+id/num_resena_resumen"
+                app:layout_constraintTop_toBottomOf="@+id/num_resena_resumen"
+                app:srcCompat="@drawable/ic_baseline_local_phone_24" />
+
+            <RatingBar
+                android:id="@+id/rating_resumen"
+                style="@style/Base.Widget.AppCompat.RatingBar.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                app:layout_constraintStart_toStartOf="@+id/foto_clinica_resumen"
+                app:layout_constraintTop_toBottomOf="@+id/foto_clinica_resumen" />
+
+            <ImageView
+                android:id="@+id/btn_mensaje_resumen"
+                android:layout_width="33dp"
+                android:layout_height="34dp"
+                android:layout_marginStart="24dp"
+                app:layout_constraintBottom_toBottomOf="@+id/btn_llamar_resumen"
+                app:layout_constraintStart_toEndOf="@+id/btn_llamar_resumen"
+                app:layout_constraintTop_toTopOf="@+id/btn_llamar_resumen"
+                app:layout_constraintVertical_bias="0.0"
+                app:srcCompat="@drawable/ic_baseline_message_24" />
+
+            <ImageView
+                android:id="@+id/foto_clinica_resumen"
+                android:layout_width="106dp"
+                android:layout_height="102dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.05"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

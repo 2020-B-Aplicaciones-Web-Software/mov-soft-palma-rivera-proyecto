@@ -2,7 +2,9 @@ package com.example.proyecto2b
 
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.drawable.Drawable
+import android.net.Uri
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -13,17 +15,21 @@ import android.widget.RatingBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import java.io.File
 import java.util.*
 
+
 class ResumenClinicaAdapter(
     private val context: Context,
     private val listaClinicas: List<Clinica>,
     private val recyclerView: RecyclerView,
     private val activity: AppCompatActivity,
+    var permisos: Boolean =false
 ) : RecyclerView.Adapter<ResumenClinicaAdapter.MyViewHolder>() {
     val CODIGO_RESPUESTA_INTENT_EXPLICITO = 401
     lateinit var clinica: Clinica
@@ -37,8 +43,11 @@ class ResumenClinicaAdapter(
         val numResenas = view.findViewById<TextView>(R.id.num_resena_resumen)
         val foto = view.findViewById<ImageView>(R.id.foto_clinica_resumen)
         val irDetalle = view.findViewById<Button>(R.id.btn_mas_info_clinica)
+        val btnLlamar = view.findViewById<ImageView>(R.id.btn_llamar_resumen)
+        val btnMensaje = view.findViewById<ImageView>(R.id.btn_mensaje_resumen)
 
         init {
+
         }
     }
 
@@ -70,21 +79,45 @@ class ResumenClinicaAdapter(
         holder.direccionClinica.text = "Dirección: ${clinicaResumen.direccion_clinica}"
         holder.telefonoClinica.text = "Teléfono: ${clinicaResumen.telefono_clinica}"
         holder.horarioClinica.text = getHorarioDelDia(clinicaResumen)
-        holder.calificacionClinica.numStars = 4
-        holder.numResenas.text = clinicaResumen.resenias?.num_resenias.toString()
+        holder.calificacionClinica.rating=clinicaResumen.resenias?.promedio!!.toFloat()
+        holder.numResenas.text = clinicaResumen.resenias?.num_resenias.toString() + " reseña(s)"
         holder.irDetalle.setOnClickListener {
             clinica = clinicaResumen
             val detalleClinica = Intent(
                 context,
                 DetalleClinica::class.java
             )
-            Log.d("ResumenClinica",clinica.toString())
             detalleClinica.putExtra("CLINICA", clinica)
-            activity.startActivityForResult(detalleClinica,CODIGO_RESPUESTA_INTENT_EXPLICITO)
+            activity.startActivityForResult(detalleClinica, CODIGO_RESPUESTA_INTENT_EXPLICITO)
 
         }
+        holder.btnMensaje
+            .setOnClickListener {
+                clinicaResumen.telefono_clinica?.let { sendSMS(clinicaResumen.telefono_clinica!!) }
+            }
+        holder.btnLlamar
+            .setOnClickListener {
+                clinicaResumen.telefono_clinica?.let { call(clinicaResumen.telefono_clinica!!) }
+            }
 
 
+    }
+
+    fun sendSMS(numero: String) {
+        val uri: Uri = Uri.parse("smsto:${numero}")
+        val intent = Intent(Intent.ACTION_SENDTO, uri)
+        intent.putExtra(
+            "sms_body",
+            "Buenos días, deseo obtener mas informacion sobre sus servicios," +
+                    " me enteré de esta cllínica por medio de VetApp"
+        )
+        startActivity(context, intent, null)
+    }
+
+    fun call(numero: String) {
+        val intent = Intent(Intent.ACTION_DIAL)
+        intent.data = Uri.parse("tel:$numero")
+        startActivity(context, intent, null)
     }
 
     private fun getHorarioDelDia(clinicaResumen: Clinica): CharSequence? {

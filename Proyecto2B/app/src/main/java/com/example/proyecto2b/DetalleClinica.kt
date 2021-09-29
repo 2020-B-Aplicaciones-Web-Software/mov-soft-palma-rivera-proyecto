@@ -1,13 +1,17 @@
 package com.example.proyecto2b
 
+
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.graphics.drawable.Drawable
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.ArrayAdapter
-import android.widget.Button
-import android.widget.ListView
-import android.widget.TextView
+import android.widget.*
+import androidx.core.content.ContextCompat
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
+import java.io.File
 
 class DetalleClinica : AppCompatActivity() {
     var arregloResenias1 = ArrayList<Resenia>()
@@ -32,6 +36,16 @@ class DetalleClinica : AppCompatActivity() {
         }
 
         if (clinica != null) {
+            val storage = Firebase.storage
+            val sr = storage.reference
+            val path = clinica.foto_logo?.let { sr.child("images/$it") }
+
+            val file = File.createTempFile("profile", "jpg")
+            path?.getFile(file)?.addOnSuccessListener {
+
+                val bitmap = Drawable.createFromPath(file.toString())
+                findViewById<ImageView>(R.id.foto_detalle_clinica).setImageDrawable(bitmap)
+            }
             findViewById<TextView>(R.id.tv_direccion).setText("Direccion: " + clinica.direccion_clinica)
             findViewById<TextView>(R.id.tv_telefono).setText("Teléfono: " + clinica.telefono_clinica)
             findViewById<TextView>(R.id.tv_costo_consulta).setText("Costo de la consulta: $" + clinica.costo_consulta.toString())
@@ -43,7 +57,22 @@ class DetalleClinica : AppCompatActivity() {
             findViewById<TextView>(R.id.tv_sabado).setText("Sabado     "+clinica.horarios_atencion?.sabado)
             findViewById<TextView>(R.id.tv_domingo).setText("Domingo    "+clinica.horarios_atencion?.domingo)
             findViewById<TextView>(R.id.tv_novedades).setText(clinica.novedades)
+            findViewById<RatingBar>(R.id.rating_detalle).rating= clinica.resenias?.promedio?.toFloat()!!
+            findViewById<TextView>(R.id.promedio_detalle).text= clinica.resenias?.promedio.toString()
+            findViewById<TextView>(R.id.num_resenias_detalle).text=clinica.resenias?.num_resenias.toString()
+
+            findViewById<ImageView>(R.id.llamar_detalle)
+                .setOnClickListener {
+                    clinica.telefono_clinica?.let { it1 -> call(it1) }
+                }
+            findViewById<ImageView>(R.id.web_detalle)
+                .setOnClickListener {
+                    clinica.web_clinica?.let { it1 -> irWeb(it1) }
+                }
         }
+
+
+
 
         var servicios = ArrayList<Servicio>()
         if (clinica != null) {
@@ -60,7 +89,16 @@ class DetalleClinica : AppCompatActivity() {
         registerForContextMenu(listViewClinicas)
         listViewClinicas.adapter = adaptador
 
+    }
 
+    fun irWeb(web: String) {
+        val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse("http://${web}"))
+        startActivity(browserIntent)
+    }
 
+    fun call(numero: String) {
+        val intent = Intent(Intent.ACTION_DIAL)
+        intent.data = Uri.parse("tel:$numero")
+        ContextCompat.startActivity(this, intent, null)
     }
 }
