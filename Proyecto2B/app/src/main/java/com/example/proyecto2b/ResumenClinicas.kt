@@ -32,7 +32,7 @@ class ResumenClinicas : AppCompatActivity() {
                         reseniaEvaluacionMapa.get("num_3").toString().toInt(),
                         reseniaEvaluacionMapa.get("num_2").toString().toInt(),
                         reseniaEvaluacionMapa.get("num_1").toString().toInt(),
-                        reseniaEvaluacionMapa.get("promedio").toString().toInt(),
+                        reseniaEvaluacionMapa.get("promedio").toString().toDouble(),
                         reseniaEvaluacionMapa.get("num_resenias").toString().toInt()
                     )
                     val web = document.get("web_clinica").toString()

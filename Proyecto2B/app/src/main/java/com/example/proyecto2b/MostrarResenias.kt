@@ -2,6 +2,7 @@ package com.example.proyecto2b
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.TextView
@@ -34,15 +35,15 @@ class MostrarResenias : AppCompatActivity() {
             num_resenias.text= clinica.resenias!!.num_resenias.toString()
             promedio.text=clinica.resenias!!.promedio.toString()
             barra5.progress =
-                ((clinica.resenias?.num_5)?.div((clinica.resenias!!.num_resenias))!!) * 100
+                (clinica.resenias?.num_5?.toDouble()?.div(clinica.resenias!!.num_resenias)?.times(100))?.toInt()!!
             barra4.progress =
-                ((clinica.resenias?.num_4)?.div((clinica.resenias!!.num_resenias))!!) * 100
+                (clinica.resenias?.num_4?.toDouble()?.div(clinica.resenias!!.num_resenias)?.times(100))?.toInt()!!
             barra3.progress =
-                ((clinica.resenias?.num_3)?.div((clinica.resenias!!.num_resenias))!!) * 100
+                (clinica.resenias?.num_3?.toDouble()?.div(clinica.resenias!!.num_resenias)?.times(100))?.toInt()!!
             barra2.progress =
-                ((clinica.resenias?.num_2)?.div((clinica.resenias!!.num_resenias))!!) * 100
+                (clinica.resenias?.num_2?.toDouble()?.div(clinica.resenias!!.num_resenias)?.times(100))?.toInt()!!
             barra1.progress =
-                ((clinica.resenias?.num_1)?.div((clinica.resenias!!.num_resenias))!!) * 100
+                (clinica.resenias?.num_1?.toDouble()?.div(clinica.resenias!!.num_resenias)?.times(100))?.toInt()!!
         }
 
 

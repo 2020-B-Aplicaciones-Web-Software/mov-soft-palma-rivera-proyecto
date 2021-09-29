@@ -59,7 +59,7 @@ class DetalleClinica : AppCompatActivity() {
             findViewById<TextView>(R.id.tv_novedades).setText(clinica.novedades)
             findViewById<RatingBar>(R.id.rating_detalle).rating= clinica.resenias?.promedio?.toFloat()!!
             findViewById<TextView>(R.id.promedio_detalle).text= clinica.resenias?.promedio.toString()
-            findViewById<TextView>(R.id.num_resenias_detalle).text=clinica.resenias?.num_resenias.toString()
+            findViewById<TextView>(R.id.num_resenias_detalle).text=clinica.resenias?.num_resenias.toString()+" reseña(s)"
 
             findViewById<ImageView>(R.id.llamar_detalle)
                 .setOnClickListener {

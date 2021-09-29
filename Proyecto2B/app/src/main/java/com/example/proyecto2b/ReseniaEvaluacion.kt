@@ -9,7 +9,7 @@ class ReseniaEvaluacion (
     var num_3: Int,
     var num_2: Int,
     var num_1: Int,
-    var promedio: Int,
+    var promedio: Double,
     var num_resenias: Int
 ): Parcelable {
     constructor(parcel: Parcel) : this(
@@ -18,7 +18,7 @@ class ReseniaEvaluacion (
         parcel.readInt(),
         parcel.readInt(),
         parcel.readInt(),
-        parcel.readInt(),
+        parcel.readDouble(),
         parcel.readInt()
     ) {
     }
@@ -29,7 +29,7 @@ class ReseniaEvaluacion (
         parcel.writeInt(num_3)
         parcel.writeInt(num_2)
         parcel.writeInt(num_1)
-        parcel.writeInt(promedio)
+        parcel.writeDouble(promedio)
         parcel.writeInt(num_resenias)
     }
 

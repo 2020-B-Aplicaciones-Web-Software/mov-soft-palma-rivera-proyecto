@@ -30,7 +30,7 @@
         app:layout_constraintHorizontal_bias="0.053"
         app:layout_constraintStart_toStartOf="@+id/map"
         app:layout_constraintTop_toTopOf="@+id/map"
-        app:layout_constraintVertical_bias="0.125" />
+        app:layout_constraintVertical_bias="0.848" />
 
     <Button
         android:id="@+id/btn_registrar"
@@ -63,15 +63,16 @@
 
             <TextView
                 android:id="@+id/nombre_clinica_mapa"
-                android:layout_width="190dp"
-                android:layout_height="46dp"
-                android:layout_marginStart="4dp"
+                android:layout_width="179dp"
+                android:layout_height="44dp"
+                android:layout_marginStart="12dp"
                 android:gravity="center_vertical"
                 android:text="Null"
                 android:textAppearance="?attr/textAppearanceHeadline6"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.476" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_ver"
@@ -82,8 +83,7 @@
                 android:text="Ver"
                 app:layout_constraintBottom_toBottomOf="@+id/nombre_clinica_mapa"
                 app:layout_constraintStart_toEndOf="@+id/nombre_clinica_mapa"
-                app:layout_constraintTop_toTopOf="@+id/nombre_clinica_mapa"
-                app:layout_constraintVertical_bias="1.0" />
+                app:layout_constraintTop_toTopOf="@+id/nombre_clinica_mapa" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.card.MaterialCardView>
