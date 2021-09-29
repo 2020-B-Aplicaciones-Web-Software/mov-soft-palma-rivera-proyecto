@@ -85,10 +85,57 @@ class EscribirResenia : AppCompatActivity() {
                                 toast.setText("Resenia creada exitosamente")
                                 toast.show()
                             }
+
+
                     }
                 }
 
+            if (clinica.resenias != null) {
+                if (calificacion == 5.0){
+                    clinica.resenias!!.num_5 ++
+                }
+                if (calificacion == 4.0){
+                    clinica.resenias!!.num_4 ++
+                }
+                if (calificacion == 3.0){
+                    clinica.resenias!!.num_3 ++
+                }
+                if (calificacion == 2.0){
+                    clinica.resenias!!.num_2 ++
+                }
+                if (calificacion == 1.0){
+                    clinica.resenias!!.num_1 ++
+                }
+
+                clinica.resenias!!.num_resenias++
+
+                clinica.resenias!!.promedio = ((clinica.resenias!!.num_5.toDouble() * 5) +
+                        (clinica.resenias!!.num_4.toDouble() * 4) +
+                        (clinica.resenias!!.num_3.toDouble() * 3)+
+                        (clinica.resenias!!.num_2.toDouble() * 2)+
+                        (clinica.resenias!!.num_1.toDouble() * 1))/ clinica.resenias!!.num_resenias.toDouble()
+
+                referenciaResenia
+                    .get()
+                    .addOnSuccessListener { result ->
+                        for (document in result){
+                            val referencia_documento = db.collection("clinica").document(document.id)
+                            referencia_documento.update("resenias.num_5",(clinica.resenias?.num_5))
+                            referencia_documento.update("resenias.num_4",(clinica.resenias?.num_4))
+                            referencia_documento.update("resenias.num_3",(clinica.resenias?.num_3))
+                            referencia_documento.update("resenias.num_2",(clinica.resenias?.num_2))
+                            referencia_documento.update("resenias.num_1",(clinica.resenias?.num_1))
+                            referencia_documento.update("resenias.num_resenias",(clinica.resenias)?.num_resenias)
+                            referencia_documento.update("resenias.promedio", (clinica.resenias!!.promedio))
+                        }
+                    }
+            }
+
         }
+
+
+
+
 
     }
 }
