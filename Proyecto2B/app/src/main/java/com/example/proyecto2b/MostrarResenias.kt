@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.ProgressBar
+import android.widget.RatingBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
@@ -30,9 +31,11 @@ class MostrarResenias : AppCompatActivity() {
         val barra1 = findViewById<ProgressBar>(R.id.barra1)
         val num_resenias=findViewById<TextView>(R.id.num_resenias)
         val promedio=findViewById<TextView>(R.id.promedio_resenia)
+        val calificacion=findViewById<RatingBar>(R.id.ratingBar)
 
         if (clinica != null) {
             num_resenias.text= clinica.resenias!!.num_resenias.toString()
+            calificacion.rating= clinica.resenias!!.promedio.toFloat()
             promedio.text=clinica.resenias!!.promedio.toString()
             barra5.progress =
                 (clinica.resenias?.num_5?.toDouble()?.div(clinica.resenias!!.num_resenias)?.times(100))?.toInt()!!

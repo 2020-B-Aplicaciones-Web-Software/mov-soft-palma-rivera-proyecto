@@ -13,6 +13,7 @@ class ResumenClinicas : AppCompatActivity() {
         setContentView(R.layout.activity_resumen_clinicas)
         val rvClinica = findViewById<RecyclerView>(R.id.rv_lista_clinicas)
         val lista = ArrayList<Clinica>()
+        val arregloServicios = ArrayList<Servicio>()
         val db = Firebase.firestore
         val ref = db.collection("clinica")
         ref.get()
@@ -49,6 +50,20 @@ class ResumenClinicas : AppCompatActivity() {
                         horariosAtencionMapa.get("domingo").toString(),
 
                         )
+                    val referenciaServicio = ref.document(document.id).collection("servicios")
+                    referenciaServicio.get()
+                        .addOnSuccessListener { result1 ->
+                            for (document1 in result1) {
+                                val nombre_servicio = "${document1.data.get("nombre_servicio")}"
+                                val costo_servicio = "${document1.data.get("costo_servicio")}"
+                                arregloServicios.add(
+                                    Servicio(
+                                        nombre_servicio,
+                                        costo_servicio.toDouble()
+                                    )
+                                )
+                            }
+                        }
                     lista.add(
                         Clinica(
                             nombre_clinica,
@@ -60,7 +75,7 @@ class ResumenClinicas : AppCompatActivity() {
                             novedades,
                             latitud,
                             longitud,
-                            reseniaEvaluacion, horarios, ArrayList<Servicio>()
+                            reseniaEvaluacion, horarios, arregloServicios
                         )
                     )
                     Log.d("Storage", lista[0].toString())

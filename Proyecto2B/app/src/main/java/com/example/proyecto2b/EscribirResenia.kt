@@ -10,6 +10,7 @@ import android.widget.Toast
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import java.text.DecimalFormat
 
 class EscribirResenia : AppCompatActivity() {
     val CODIGO_RESPUESTA_INTENT_EXPLICITO = 401
@@ -109,11 +110,12 @@ class EscribirResenia : AppCompatActivity() {
 
                 clinica.resenias!!.num_resenias++
 
-                clinica.resenias!!.promedio = ((clinica.resenias!!.num_5.toDouble() * 5) +
+                val promedio = ((clinica.resenias!!.num_5.toDouble() * 5) +
                         (clinica.resenias!!.num_4.toDouble() * 4) +
                         (clinica.resenias!!.num_3.toDouble() * 3)+
                         (clinica.resenias!!.num_2.toDouble() * 2)+
                         (clinica.resenias!!.num_1.toDouble() * 1))/ clinica.resenias!!.num_resenias.toDouble()
+                clinica.resenias!!.promedio=String.format("%.2f", promedio).toDouble()
 
                 referenciaResenia
                     .get()

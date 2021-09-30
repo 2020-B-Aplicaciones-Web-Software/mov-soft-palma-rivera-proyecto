@@ -3,7 +3,6 @@ package com.example.proyecto2b
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
@@ -15,12 +14,10 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import com.google.android.gms.maps.model.Marker
-
-
 
 
 class MainActivity : AppCompatActivity() {
@@ -36,6 +33,8 @@ class MainActivity : AppCompatActivity() {
         val lista = ArrayList<Clinica>()
         val db = Firebase.firestore
         val ref = db.collection("clinica")
+        val arregloServicios=ArrayList<Servicio>()
+
         ref.get()
             .addOnSuccessListener { documents ->
                 for (document in documents) {
@@ -69,6 +68,17 @@ class MainActivity : AppCompatActivity() {
                         horariosAtencionMapa.get("sabado").toString(),
                         horariosAtencionMapa.get("domingo").toString(),
                         )
+
+                    val referenciaServicio = ref.document(document.id).collection("servicios")
+                    referenciaServicio.get()
+                        .addOnSuccessListener { result1->
+                            for (document1 in result1){
+                                val nombre_servicio = "${document1.data.get("nombre_servicio")}"
+                                val costo_servicio = "${document1.data.get("costo_servicio")}"
+                                arregloServicios.add(Servicio(nombre_servicio,costo_servicio.toDouble()))
+                            }
+                        }
+
                     lista.add(
                         Clinica(
                             nombre_clinica,
@@ -80,11 +90,13 @@ class MainActivity : AppCompatActivity() {
                             novedades,
                             latitud,
                             longitud,
-                            reseniaEvaluacion, horarios, ArrayList<Servicio>()
+                            reseniaEvaluacion,
+                            horarios,
+                            arregloServicios
                         )
                     )
                 }
-                
+
                 cargarMapa(lista)
             }
 
@@ -104,6 +116,80 @@ class MainActivity : AppCompatActivity() {
         btn_explorar
             .setOnClickListener {
                 startActivity(Intent(this, ResumenClinicas::class.java))
+            }
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val lista = ArrayList<Clinica>()
+        val db = Firebase.firestore
+        val ref = db.collection("clinica")
+        val arregloServicios=ArrayList<Servicio>()
+
+        ref.get()
+            .addOnSuccessListener { documents ->
+                for (document in documents) {
+                    val nombre_clinica = document.get("nombre_clinica").toString()
+                    val telefono_clinia = document.get("telefono_clinica").toString()
+                    val costo_consulta = document.get("costo_consulta").toString().toDouble()
+
+                    val direccion = document.get("direccion_clinica").toString()
+                    val foto_logo = document.get("foto_logo").toString()
+                    val novedades = document.get("novedades").toString()
+                    val reseniaEvaluacionMapa = document.get("resenias") as Map<*, *>
+                    val reseniaEvaluacion = ReseniaEvaluacion(
+                        reseniaEvaluacionMapa.get("num_5").toString().toInt(),
+                        reseniaEvaluacionMapa.get("num_4").toString().toInt(),
+                        reseniaEvaluacionMapa.get("num_3").toString().toInt(),
+                        reseniaEvaluacionMapa.get("num_2").toString().toInt(),
+                        reseniaEvaluacionMapa.get("num_1").toString().toInt(),
+                        reseniaEvaluacionMapa.get("promedio").toString().toDouble(),
+                        reseniaEvaluacionMapa.get("num_resenias").toString().toInt()
+                    )
+                    val web = document.get("web_clinica").toString()
+                    val latitud = document.get("latitud").toString().toDouble()
+                    val longitud = document.get("longitud").toString().toDouble()
+                    val horariosAtencionMapa = document.get("horarios_atencion") as Map<*, *>
+                    val horarios = HorariosAtencion(
+                        horariosAtencionMapa.get("lunes").toString(),
+                        horariosAtencionMapa.get("martes").toString(),
+                        horariosAtencionMapa.get("miercoles").toString(),
+                        horariosAtencionMapa.get("jueves").toString(),
+                        horariosAtencionMapa.get("viernes").toString(),
+                        horariosAtencionMapa.get("sabado").toString(),
+                        horariosAtencionMapa.get("domingo").toString(),
+                    )
+
+                    val referenciaServicio = ref.document(document.id).collection("servicios")
+                    referenciaServicio.get()
+                        .addOnSuccessListener { result1->
+                            for (document1 in result1){
+                                val nombre_servicio = "${document1.data.get("nombre_servicio")}"
+                                val costo_servicio = "${document1.data.get("costo_servicio")}"
+                                arregloServicios.add(Servicio(nombre_servicio,costo_servicio.toDouble()))
+                            }
+                        }
+
+                    lista.add(
+                        Clinica(
+                            nombre_clinica,
+                            foto_logo,
+                            direccion,
+                            telefono_clinia,
+                            web,
+                            costo_consulta,
+                            novedades,
+                            latitud,
+                            longitud,
+                            reseniaEvaluacion,
+                            horarios,
+                            arregloServicios
+                        )
+                    )
+                }
+
+                cargarMapa(lista)
             }
 
     }

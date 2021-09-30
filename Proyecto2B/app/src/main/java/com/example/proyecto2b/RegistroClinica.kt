@@ -114,7 +114,7 @@ class RegistroClinica : AppCompatActivity() {
             val novedades = findViewById<EditText>(R.id.novedades).text.toString()
             val latitud = findViewById<EditText>(R.id.latitud).text.toString().toDouble()
             val longitud = findViewById<EditText>(R.id.longitud).text.toString().toDouble()
-            val resenias = ReseniaEvaluacion(0, 0, 0, 0, 0, 0.0, 0)
+            val resenias = ReseniaEvaluacion(5, 5, 3, 0, 0, 4.1, 13)
             val horarios_atencion = getHorarios()
 
 

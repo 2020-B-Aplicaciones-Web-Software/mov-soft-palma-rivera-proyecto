@@ -38,7 +38,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="Button"
+            android:text="Subir foto"
             app:layout_constraintEnd_toEndOf="@+id/img_logo"
             app:layout_constraintStart_toStartOf="@+id/img_logo"
             app:layout_constraintTop_toBottomOf="@+id/img_logo" />
@@ -562,34 +562,13 @@
             app:layout_constraintVertical_bias="0.0" />
 
         <TextView
-            android:id="@+id/textView30"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="64dp"
-            android:text="Etiquetas"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/domingo" />
-
-        <com.google.android.material.chip.ChipGroup
-            android:id="@+id/chip_etiquetas"
-            android:layout_width="412dp"
-            android:layout_height="123dp"
-            android:layout_marginTop="8dp"
-            app:layout_constraintStart_toStartOf="@+id/textView30"
-            app:layout_constraintTop_toBottomOf="@+id/textView30">
-
-        </com.google.android.material.chip.ChipGroup>
-
-        <TextView
             android:id="@+id/textView34"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="32dp"
             android:text="Servicios"
-            app:layout_constraintStart_toStartOf="@+id/chip_etiquetas"
-            app:layout_constraintTop_toBottomOf="@+id/chip_etiquetas" />
+            app:layout_constraintStart_toStartOf="@+id/domingo"
+            app:layout_constraintTop_toBottomOf="@+id/domingo" />
 
         <Button
             android:id="@+id/registrar"
